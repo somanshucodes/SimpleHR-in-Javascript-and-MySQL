@@ -1,0 +1,434 @@
+<!doctype>
+<html>
+<head>
+<title>Welcome to Admin Panel</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="bootbox.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+<script src="functions.js"></script>
+<style>
+body{ font-family:"Georgia", Trebuchet MS; font-size:14px; letter-spacing:2px; background:cyan; background-image:url('lines.jpg');}
+#container{position: absolute;
+    top:-20;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+    width:600px;
+	height:400px;
+   padding:5px; background:white; box-shadow:5px 5px 5px black; border-radius:2px;}
+   
+h1{text-align:center; font-family:"Trebuchet MS", Arial; letter-spacing:5px; margin-top:20px; font-style:italic; color:black;}
+.heading{background:grey; color:white; font-size:22px; padding:5px; text-align:center;}
+.des{height:40px; width:600px;  border:none; border-bottom:3px solid black;}
+.des:focus{box-shadow:3px 3px 3px #61428a; -webkit-transition:0.5s; border:none;}
+.done{background:darkgreen; color:white; border-radius:3px; box-shadow:3px 3px 3px black; margin-top:10px; font-size:20px; border:none; padding:10px;}
+hr{margin-top:10px;}
+.navbar a:hover{text-decoration:underline;}
+.grub{background-image:url('back.png'); border-radius:3px; margin-left:30px; padding:5px;height:200px; margin-top:10px; color:white;}
+.grub1{background-image:url('back.png'); border-radius:3px; padding:5px;margin-left:5px;height:200px;margin-top:10px; color:white;} 	 	}
+.bg{background:white;}
+.sidebar{margin-left:0px; margin-top:100px; width:40px; height:130px; position:fixed; background:darkgrey; }
+.text{-webkit-transform: rotate(90deg); margin-top:20px;  
+-moz-transform: rotate(90deg);
+-ms-transform: rotate(90deg);
+-o-transform: rotate(90deg);
+transform: rotate(90deg);}
+.grub2{color:white;background-image:url('back.png');margin-top:10px; height:200px; padding:5px; border-radius:3px; margin-left:35px;}
+.grub2 img{width:120px; height:120px; margin:10px;}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.search{width:250px; border:none; border-bottom:2px solid black;}
+.search:focus{border:2px solid black;}
+.live{border-radius:5px; background:none; border:2px solid lightblue;  padding:15px; width:540px; text-align:center;}
+#result{color:darkgrey;}
+.c{background-image:url('back.png');}
+.input-group-addon{width:30px;}
+.x{width:10px;}
+.h{background:lightgrey; padding:7px; border-radius:3px; }
+</style>
+</head>
+<body>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog c modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Employee</h4>
+      </div>
+      <div class="modal-body">
+	  <div class="row">
+	<div class="col-md-6">
+      <p class="h">Personal Details</p>
+	  
+	  
+	  <span class="input-group-addon x">Employee Name:</span>
+	  <input id="name" type="text" class="form-control" name="email" placeholder="Name of the employee:">
+    <span class="input-group-addon x">Guardian/Father's Name:</span>
+    <input id="father_name" type="password" class="form-control" name="password" placeholder="Father/Guardian's Name">
+    <span class="input-group-addon x">Address 1:</span>
+    <textarea id="address1" type="text" class="form-control" name="msg" placeholder="Additional Info"> </textarea>
+     <span class="input-group-addon x">Address 2:</span>
+    <textarea id="address2" type="text" class="form-control" name="msg" placeholder="Additional Info"> </textarea>
+	<hr>
+  
+  <span class="input-group-addon">Sex:</span>
+  <input type="radio" name="gender" value="male"> Male</input>
+  <input type="radio" name="gender" value="female"> Female</input>
+  <input type="radio" name="gender" value="other"> Other</input>
+   
+   <span class="input-group-addon">Qualification</span>
+   <textarea id="qual" class="form-control"></textarea>
+   <span class="input-group-addon">Marital Status:</br></span>
+  <input type="radio" name="gender" value="married"> Married</input>
+  <input type="radio" name="gender" value="single"> Single</input>
+  <hr>
+  
+   <span class="input-group-addon x">Phone Number:</span>
+    <input id="number" type="number" class="form-control" name="number" placeholder="Phone No."> </textarea>
+
+
+
+      </div>
+	  
+	  <div class="col-md-6">
+	 <p class="h">For office use</p>
+	  <span class="input-group-addon">Employee Code:</span>
+     <input id="emp_code" type="number" class="form-control" name="msg" placeholder="Code"> </input>
+	  <span class="input-group-addon x">Designation:</span>
+	  <input id="desig" type="text" class="form-control" name="email" placeholder="Designation">
+    <span class="input-group-addon x">Department</span>
+    <input id="department" type="password" class="form-control" name="password" placeholder="Department">
+    <span class="input-group-addon x">Basic Salary:</span>
+    <input id="basic" type="number" class="form-control" name="msg" placeholder="Salary"> </input>
+     <span class="input-group-addon">HR:</span>
+     <input id="hr" type="number" class="form-control" name="msg" placeholder="Salary"> </input>
+     <span class="input-group-addon">DA:</span>
+     <input id="da" type="number" class="form-control" name="msg" placeholder="Salary"> </input>
+	 <span class="input-group-addon">PF (if applicable):</span>
+     <input id="pf" type="number" class="form-control" name="msg" placeholder="Salary"> </input>
+	 <span class="input-group-addon">PPF (if applicable):</span>
+     <input id="ppf" type="number" class="form-control" name="msg" placeholder="Salary"> </input>
+     
+	 <span class="input-group-addon x">Bank Account Number:</span>
+    <input id="bank_ac" type="text" class="form-control" name="msg" placeholder="A/c Number"> </input>
+	<hr>
+	<span class="input-group-addon">Choose Photo:</span>
+	<input type="file" name="fileToUpload" id="fileToUpload">
+	
+  
+ 
+
+	  
+	  </div>
+	  </div>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-success" onclick="addEmp();">Add</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<nav class="navbar navbar-default c">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand" onclick="openNav()">&#9776; Panel</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="admin.html">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Employees
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Add Employees</a></li>
+          <li><a href="#">Delete Employees</a></li>
+          <li><a href="#" onclick="showAll();">View Employees</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Past_Records</a></li>
+      <li><a href="#" data-toggle="modal" data-target="#myModal5">Generate_Reports</a></li>
+	  <li><a class="btn btn-default" data-toggle="modal" data-target="#myModal4">COMPANY MASTER FILE</a></li>
+	  <li><a class="btn btn-default" data-toggle="modal" data-target="#myModal3">EMPLOYEE MASTER FILE</a></li>
+    </ul>
+	<ul class="nav navbar-nav navbar-right">
+      <form class="navbar-form navbar-right">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search database">
+    <div class="input-group-btn">
+      <button class="btn btn-default" type="submit">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </div>
+  </div>
+</form>
+    </ul>
+  </div>
+</nav>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+<div id="myAlerts"></div>
+<div class="container-fluid">
+
+<div class="row">
+<div class="col-md-5 grub">
+<div class="heading">STATISTICS</div>
+The stats for your company are:
+<ol>
+<li>Number of employees: 35</li>
+</ol>
+</div>
+
+
+<div class="col-md-4 grub1">
+<div class="heading">Employee Wizard</div>
+<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Click here</button> to add a new employee.
+</div>
+
+<div class="col-md-2 grub1">
+<div class="heading">Log</div>
+Last logged in: Today</br>
+Last known IP Address: 115.123.12.4</br>
+Last known browser: Google Chrome</br>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-2 grub">
+<div class="heading">Add Leave(s)</div>
+<button class="btn btn-info" data-toggle="modal" data-target="#myModal6">Click here</button> to add leaves on those days the office won't function. For accurate calculation of salaries, mark them in advance.
+</div>
+<div class="col-md-3 grub1">
+<div class="heading">Upcoming Holidays</div>
+Last holiday was on: 8/5/2017</br>
+Next holiday is  on: 20/5/2017</br>
+You can view existing holidays (according to dates that never change) here.
+</div>
+
+<div class="col-md-4 grub1">
+<div class="heading">Generate Notices</div>
+Use this tool to generate notices containing your letterhead. Simply add the information that you want to be shown as a notice, and a PDF will be generated for you. <button class="btn btn-default">Launch</button>
+</div>
+
+<div class="col-md-2 grub1">
+<div class="heading">Master Records</div>
+To access the master records, use the navbar above.
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-11 grub2">
+<div class="heading">SHORTCUTS</div>
+<img src="user.png" data-toggle="modal" data-target="#myModal2" title="Switch between accounts" id="image1" onmouseover="document.getElementById('image1').src='user-hover.png';
+onmouseout="document.getElementById('image1').src='user.png';">
+<img src="file.png" data-toggle="tooltip" title="Open Advanced Search" id="image2" data-toggle="modal" data-target="#myModal1" onmouseover="document.getElementById('image2').src='file-hover.png';" onmouseout="document.getElementById('image2').src='file.png';">
+<img src="calendar-hover.png" ata-toggle="tooltip" title="Add Holidays" id="image3" onmouseover="document.getElementById('image3').src='calendar.png';" onmouseout="document.getElementById('image3').src='calendar-hover.png';" onclick="holidayManager();">
+</div>
+</div>
+<div class="modal fade" id="myModal4" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">COMPANY MASTER</h4>
+        </div>
+        <div class="modal-body">
+		  Search for company:</br>
+          <input class="live" placeholder="Enter name of company" type="text">
+		  </br>
+		  Results:</br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-success">Add</button>
+        </div>
+      </div>
+      </div>
+</div>
+<div class="modal fade" id="myModal5" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">PDF/DOC CREATION WIZARD</h4>
+        </div>
+        <div class="modal-body">
+		  Select type of record you want:</br>
+          
+		  <input type="radio">PDF</input><input type="radio">DOCX</input>
+		  </br>
+		  This will generate the document for all the employees in the company. For individual records, kindly check the Employee Master File.</br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success">Add</button>
+		  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      </div>
+</div>
+<div class="modal fade" id="myModal6" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">ADD LEAVES</h4>
+        </div>
+        <div class="modal-body">
+		  Add Leaves:</br>
+          <input class="live" placeholder="Enter date (in dd/mm/yyyy)" type="text">
+		  </br>
+		  <input class="live" placeholder="Enter reason for leave" type="text">
+		  </br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success">Add</button>		
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      </div>
+</div>
+<div class="modal fade" id="myModal3" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">EMPLOYEE MASTER</h4>
+        </div>
+        <div class="modal-body">
+		  Search for employee:</br>
+          <input class="live" placeholder="Enter name of company" type="text">
+		  </br>
+		  Results:</br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success">Add</button>		
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      </div>
+</div>
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add/Switch Company</h4>
+        </div>
+        <div class="modal-body">
+		  Enter name of the company to be added:</br>
+          <input class="live" placeholder="Enter name of company" type="text">
+		  </br>
+		  Companies added:</br>
+        </div>
+        <div class="modal-footer">
+		  <button type="button" class="btn btn-success">Add</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      </div>
+</div>
+ <div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Advanced Search</h4>
+        </div>
+        <div class="modal-body">
+          <p><input type="text" id="searcht" class="live" width="450" placeholder="Enter name of employee" onkeyup="live_search(document.getElementById('searcht').value);"/>
+		  </p>
+	     <button class="btn btn-default" onclick="wipe();">Clear</button>
+		  <hr>
+		  <div id="result">Use the search bar to show data</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success">Add</button>
+		  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+</div>
+</div>
+</body>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+	 document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+	document.body.style.backgroundImage = "url('1.jpg')";;
+}
+
+function wipe(){
+ document.getElementById("result").innerHTML = "Use the search bar above to show data";
+}
+</script>
+</body>
+
+</html>
